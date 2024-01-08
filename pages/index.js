@@ -35,6 +35,7 @@ export default function Component() {
   }
 
   return (
+  <>
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white"
          style={{ 
            backgroundImage: `url('/background1.jpg')`,
@@ -72,6 +73,9 @@ export default function Component() {
         
       </footer>
     </div>
-    
+    <div className="bg-black text-center py-2 sm:py-4 text-white-bold text-xl sm:text-sm">
+    <p>{`2024. Сделано с ❤\u{fe0f} для Евы`}</p>
+    </div>
+  </>
   );
 }
