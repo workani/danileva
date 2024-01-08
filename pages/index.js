@@ -37,7 +37,7 @@ export default function Component() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white"
          style={{ 
-           backgroundImage: `url('/background.jpg')`,
+           backgroundImage: `url('/background1.jpg')`,
            backgroundSize: 'cover',
            backgroundPosition: 'center',
            backgroundRepeat: 'no-repeat'
@@ -47,28 +47,31 @@ export default function Component() {
         <p className="text-xl sm:text-2xl text-gray-300">The day we've been waiting for is almost here!</p>
       </header>
       <main className="flex flex-col items-center justify-center space-y-5 sm:space-y-10">
-        <div className="flex flex-wrap justify-center space-x-2 sm:space-x-10 text-center">
-          <div>
-            <p className="text-5xl sm:text-7xl font-bold text-white mb-2">{timeLeft.days}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 text-center gap-4">
+            <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4">
+            <p className="text-5xl sm:text-7xl font-bold ">{timeLeft.days}</p>
             <p className="text-xl sm:text-2xl text-gray-300">Days</p>
           </div>
-          <div>
+          <div  className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4">
             <p className="text-5xl sm:text-7xl font-bold text-white mb-2">{timeLeft.hours}</p>
             <p className="text-xl sm:text-2xl text-gray-300">Hours</p>
           </div>
-          <div>
+          <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4">
             <p className="text-5xl sm:text-7xl font-bold text-white mb-2">{timeLeft.minutes}</p>
             <p className="text-xl sm:text-2xl text-gray-300">Minutes</p>
           </div>
-          <div>
+          <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4">
             <p className="text-5xl sm:text-7xl font-bold text-white mb-2">{timeLeft.seconds}</p>
             <p className="text-xl sm:text-2xl text-gray-300">Seconds</p>
           </div>
         </div>
       </main>
       <footer className="text-center py-10">
+        
         <p className="text-xl sm:text-2xl text-gray-300">Can't wait to see you on 17th February!</p>
+        
       </footer>
     </div>
+    
   );
 }
