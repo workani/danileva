@@ -31,6 +31,19 @@ body {
 @media only screen and (max-width: 600px) { /* 600px обычно используется как порог для мобильных устройств */
   .countdown-container {
     padding-top: 130px; /* Добавляет отступ сверху для мобильных устройств */
+  .content-container {
+  /* Add your styles here */
+  /* For example, if you want to add padding: */
+  padding: 20px;
+}
   }
 }
-
+  
+/* Медиа-запрос для десктопов */
+@media (min-width: 1024px) {
+  .countdown-container div {
+    /* Увеличиваем размеры элементов счетчика */
+    padding: 3rem;
+    font-size: 4rem; /* Увеличенный размер шрифта для десктопов */
+  }
+}
