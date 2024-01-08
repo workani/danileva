@@ -36,7 +36,7 @@ export default function Component() {
 
   return (
   <>
-    <div className="countdown-container flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white"
+    <div className="countdown-text-container flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white"
          style={{ 
            backgroundImage: `url('/background1.jpg')`,
            backgroundSize: 'cover',
@@ -48,7 +48,7 @@ export default function Component() {
         <p className="text-xl sm:text-2xl text-gray-300">The day we've been waiting for is almost here!</p>
       </header>
       <main className="flex flex-col items-center justify-center space-y-5 sm:space-y-10">
-          <div className="grid grid-cols-2 sm:grid-cols-4 text-center gap-4">
+          <div className="countdown-container grid grid-cols-2 sm:grid-cols-4 text-center gap-4">
             <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4">
             <p className="text-5xl sm:text-7xl font-bold ">{timeLeft.days}</p>
             <p className="text-xl sm:text-2xl text-gray-300">Days</p>
