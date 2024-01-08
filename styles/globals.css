@@ -43,7 +43,7 @@ body {
 @media (min-width: 1024px) {
   .countdown-container div {
     /* Увеличиваем размеры элементов счетчика */
-    padding: 3rem;
-    font-size: 4rem; /* Увеличенный размер шрифта для десктопов */
+    padding: 2rem;
+    font-size: 3rem; /* Увеличенный размер шрифта для десктопов */
   }
 }
