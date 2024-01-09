@@ -114,7 +114,6 @@ export default function Component() {
         
       </footer>
     </div>
-    
     <div className="block md:hidden">
       <div className="min-h-screen bg-black flex items-center justify-center p-4">
         <div className="max-w-full mx-auto">
