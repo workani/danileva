@@ -119,7 +119,12 @@ export default function CombinedComponent() {
         </main>
         <footer className="text-center py-10">
           <p className="text-xl sm:text-2xl text-gray-300">Can't wait to see you on 17th February!</p>
+        
+          
         </footer>
+         <button className="mt-30 bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full">
+            Check our gallery
+          </button>
       </div>
 
        {/* Image Gallery */}

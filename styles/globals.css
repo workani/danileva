@@ -30,44 +30,29 @@ body {
 /* CSS */
 @media only screen and (max-width: 600px) { /* 600px обычно используется как порог для мобильных устройств */
   .countdown-container {
-    padding-top: 130px; /* Добавляет отступ сверху для мобильных устройств */
+    padding-top: 210px; /* Добавляет отступ сверху для мобильных устройств */
+  }
+
   .content-container {
-  /* Add your styles here */
-  /* For example, if you want to add padding: */
-  padding: 20px;
+
+   padding: 20px;
+ 
+  }
+
+.countdown-text-container  {
+   padding-top: 25px;
+}
+
 
   .image-transition {
     transition: opacity 0.5s ease-in-out;
     opacity: 0; /* Start with an opacity of 0 */
   }
-  
-  .image-visible {
-    opacity: 1; /* Fully visible */
-  }
-  
-  .button-enter {
-    background-color: blue;
-  }
-  
-  .button-enter-active {
-    background-color: red;
-    transition: background-color 500ms ease-in;
-  }
-  
-  .button-exit {
-    background-color: red;
-  }
-  
-  .button-exit-active {
-    background-color: blue;
-    transition: background-color 500ms ease-in;
-  }
-  
 
 
-}
+
   }
-}
+
   
 /* Медиа-запрос для десктопов */
 @media (min-width: 1024px) {
