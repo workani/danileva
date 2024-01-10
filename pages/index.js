@@ -30,7 +30,19 @@ export default function CombinedComponent() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoSlide, setAutoSlide] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
+
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+
+  const [activeButton, setActiveButton] = useState(null);
+
+  const handleButtonClick = (changeImage, buttonId) => {
+    setActiveButton(buttonId);
+    changeImage();
+    setTimeout(() => {
+      setActiveButton(null);
+    }, 500); // Кнопка будет красной в течение 500 мс
+  };
 
 
    // useEffect for Countdown Timer
@@ -129,8 +141,8 @@ export default function CombinedComponent() {
             <div className="flex justify-center space-x-4 mb-6">
             <button
               aria-label="Previous image"
-              className="p-4 rounded-full bg-blue-700 hover:bg-red-700 transition-colors duration-200 ease-in-out shadow-lg"
-              onClick={prevImage}
+              className={`p-4 rounded-full bg-blue-700 ${activeButton === 'prev' ? 'bg-red-700' : ''} transition-colors duration-200 ease-in-out shadow-lg`}
+              onClick={() => handleButtonClick(prevImage, 'prev')}
             >
               <ChevronLeftIcon className="h-10 w-10 text-gray-300" />
             </button>
@@ -141,8 +153,8 @@ export default function CombinedComponent() {
             </div>
             <button
               aria-label="Next image"
-              className="p-4 rounded-full bg-blue-700 hover:bg-red-600 transition-colors duration-200 ease-in-out shadow-lg"
-              onClick={nextImage}
+              className={`p-4 rounded-full bg-blue-700 ${activeButton === 'next' ? 'bg-red-600' : ''} transition-colors duration-200 ease-in-out shadow-lg`}
+              onClick={() => handleButtonClick(nextImage, 'next')}
             >
               <ChevronRightIcon className="h-10 w-10 text-gray-300" />
             </button>
