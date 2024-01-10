@@ -122,9 +122,9 @@ export default function CombinedComponent() {
         
           
         </footer>
-         <button className="mt-30 bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full">
-            Check our gallery
-          </button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full block md:hidden">
+  Check our gallery
+</button>
       </div>
 
        {/* Image Gallery */}
