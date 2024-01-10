@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 export default function CombinedComponent() {
   // Countdown Timer logic
@@ -26,39 +26,46 @@ export default function CombinedComponent() {
     { src: '/image3.jpg', alt: 'Image 3' },
     { src: '/image4.jpg', alt: 'Image 4' },
   ];
-  
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoSlide, setAutoSlide] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-  // Combined useEffect hook for timer and auto-sliding
-  useEffect(() => {
+
+   // useEffect for Countdown Timer
+   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
+    return () => clearInterval(timer);
+  }, []);
+
+  // useEffect for Image Slider Auto-Slide
+  useEffect(() => {
     let interval;
     if (autoSlide) {
       interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
+        setImageLoaded(false); // Reset the image loaded state for fade-in effect
       }, 4000); // Change every 4 seconds
     }
 
-    return () => {
-      clearInterval(timer);
-      clearInterval(interval);
-    };
-  }, [autoSlide, images.length]);
+    return () => clearInterval(interval);
+  }, [autoSlide, images.length, currentIndex]);
 
 
 
   const nextImage = () => {
     setAutoSlide(false);
+    setImageLoaded(false);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const prevImage = () => {
     setAutoSlide(false);
+    setImageLoaded(false);
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
 
@@ -103,15 +110,16 @@ export default function CombinedComponent() {
         </footer>
       </div>
 
-      {/* Image Gallery */}
-      <div className="block md:hidden">
+       {/* Image Gallery */}
+       <div className="block md:hidden">
         <div className="min-h-screen bg-black flex items-center justify-center p-4">
           <div className="max-w-full mx-auto">
             <div className="mb-6">
               <img
                 alt={images[currentIndex].alt}
-                className="w-full h-auto rounded-md bg-gray-900"
+                className={`w-full h-auto rounded-md bg-gray-900 image-transition ${imageLoaded ? "image-visible" : ""}`}
                 src={images[currentIndex].src}
+                onLoad={() => setImageLoaded(true)}
                 style={{
                   aspectRatio: "3 / 4",
                   objectFit: "cover",
@@ -119,32 +127,41 @@ export default function CombinedComponent() {
               />
             </div>
             <div className="flex justify-center space-x-4 mb-6">
-              <button
-                aria-label="Previous image"
-                className="p-4 rounded-full bg-blue-700 hover:bg-red-700 transition-colors duration-200 ease-in-out shadow-lg"
-                onClick={prevImage}
-              >
-                <ChevronLeftIcon className="h-10 w-10 text-gray-300" />
-              </button>
-              <div className="flex space-x-2">
-                {images.map((_, index) => (
-                  <span key={index} className={`block w-3 h-3 rounded-full ${index === currentIndex ? 'bg-green-400' : 'bg-gray-500'}`} />
-                ))}
-              </div>
-              <button
-                aria-label="Next image"
-                className="p-4 rounded-full bg-blue-700 hover:bg-red-600 transition-colors duration-200 ease-in-out shadow-lg"
-                onClick={nextImage}
-              >
-                <ChevronRightIcon className="h-10 w-10 text-gray-300" />
-              </button>
+            <button
+              aria-label="Previous image"
+              className="p-4 rounded-full bg-blue-700 hover:bg-red-700 transition-colors duration-200 ease-in-out shadow-lg"
+              onClick={prevImage}
+            >
+              <ChevronLeftIcon className="h-10 w-10 text-gray-300" />
+            </button>
+            <div className="flex space-x-2">
+              {images.map((_, index) => (
+                <span key={index} className={`block w-3 h-3 rounded-full ${index === currentIndex ? 'bg-green-400' : 'bg-gray-500'}`} />
+              ))}
+            </div>
+            <button
+              aria-label="Next image"
+              className="p-4 rounded-full bg-blue-700 hover:bg-red-600 transition-colors duration-200 ease-in-out shadow-lg"
+              onClick={nextImage}
+            >
+              <ChevronRightIcon className="h-10 w-10 text-gray-300" />
+            </button>
+
             </div>
           </div>
         </div>
       </div>
+
+      {/* Hidden preload images */}
+      <div style={{ display: "none" }}>
+        <img src={images[(currentIndex + 1) % images.length].src} alt="preload next" />
+        <img src={images[(currentIndex === 0 ? images.length - 1 : currentIndex - 1)].src} alt="preload previous" />
+      </div>
     </div>
   );
 }
+
+
 
 // Chevron Icons
 const ChevronLeftIcon = (props) => (

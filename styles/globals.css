@@ -35,6 +35,16 @@ body {
   /* Add your styles here */
   /* For example, if you want to add padding: */
   padding: 20px;
+
+  .image-transition {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0; /* Start with an opacity of 0 */
+  }
+  
+  .image-visible {
+    opacity: 1; /* Fully visible */
+  }
+  
 }
   }
 }
