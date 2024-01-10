@@ -45,6 +45,26 @@ body {
     opacity: 1; /* Fully visible */
   }
   
+  .button-enter {
+    background-color: blue;
+  }
+  
+  .button-enter-active {
+    background-color: red;
+    transition: background-color 500ms ease-in;
+  }
+  
+  .button-exit {
+    background-color: red;
+  }
+  
+  .button-exit-active {
+    background-color: blue;
+    transition: background-color 500ms ease-in;
+  }
+  
+
+
 }
   }
 }

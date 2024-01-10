@@ -41,7 +41,7 @@ export default function CombinedComponent() {
     changeImage();
     setTimeout(() => {
       setActiveButton(null);
-    }, 1000); // Кнопка будет красной в течение 500 мс
+    }, 500); // Кнопка будет красной в течение 500 мс
   };
 
 
@@ -61,7 +61,7 @@ export default function CombinedComponent() {
       interval = setInterval(() => {
         setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
         setImageLoaded(false); // Reset the image loaded state for fade-in effect
-      }, 3300); // Change every 4 seconds
+      }, 4000); // Change every 4 seconds
     }
 
     return () => clearInterval(interval);
