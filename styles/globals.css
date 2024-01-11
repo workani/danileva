@@ -29,8 +29,10 @@ body {
 
   .content-container {
     padding: 20px; /* Add padding around content */
+    font-size: '100rem';
   }
 
+ 
   .image-transition {
     transition: opacity 0.5s ease-in-out;
     opacity: 0; /* Start with an opacity of 0 */

@@ -20,13 +20,13 @@ export default function CombinedComponent() {
   };
 
   // Image data array
-  const images = [
+  const imageData = [
     { src: '/image1.jpg', alt: 'Image 1' },
     { src: '/image2.jpg', alt: 'Image 2' },
     { src: '/image3.jpg', alt: 'Image 3' },
     { src: '/image4.jpg', alt: 'Image 4' },
     { src: '/image5.jpg', alt: 'Image 5' },
-    { src: '/image5.jpg', alt: 'Image 6' },
+    { src: '/image6.jpg', alt: 'Image 6' },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,6 +36,11 @@ export default function CombinedComponent() {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   const [activeButton, setActiveButton] = useState(null);
+
+
+  // State for the shuffled images
+  const [images, setImages] = useState(shuffleArray(imageData));
+
 
   // Modified main container style
 const mainContainerStyle = {
@@ -78,6 +83,11 @@ const countdownTextStyle = {
     return () => clearInterval(timer);
   }, []);
 
+   // useEffect to shuffle images on component mount
+   useEffect(() => {
+    setImages(shuffleArray(imageData));
+  }, []);
+
   // useEffect for Image Slider Auto-Slide
   useEffect(() => {
     let interval;
@@ -89,8 +99,7 @@ const countdownTextStyle = {
     }
 
     return () => clearInterval(interval);
-  }, [autoSlide, images.length, currentIndex]);
-
+  }, [autoSlide, images.length]);
 
 
   const nextImage = () => {
@@ -111,7 +120,7 @@ const countdownTextStyle = {
     <div style={mainContainerStyle}>
       {/* Countdown Timer with updated styles */}
       <div className="countdown-text-container" style={countdownTextStyle}>
-        {/* ... existing JSX ... */}
+
         <header className="text-center py-10">
           <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2">Countdown to Our Special Day</h1>
           <p className="text-xl sm:text-2xl text-gray-300">The day we've been waiting for is almost here!</p>
@@ -135,11 +144,14 @@ const countdownTextStyle = {
                 <p className="text-xl sm:text-2xl text-gray-300">Seconds</p>
               </div>
             </div>
+
         </main>
         <footer className="text-center py-10">
           <p className="text-xl sm:text-2xl text-gray-300">Can't wait to see you on 17th February!</p>
         
-          
+          <button className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-full">
+            Check our gallery
+            </button>
         </footer>
         
       </div>
@@ -231,3 +243,13 @@ const ChevronRightIcon = (props) => (
     <path d="m9 18 6-6-6-6" />
   </svg>
 );
+
+// Function to shuffle an array
+function shuffleArray(array) {
+  let shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+}
