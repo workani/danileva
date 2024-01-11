@@ -36,6 +36,28 @@ export default function CombinedComponent() {
 
   const [activeButton, setActiveButton] = useState(null);
 
+    // Inline styles for main container
+  const mainContainerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh', // Ensure it takes at least the height of the viewport
+  };
+
+  // Inline styles for countdown text container
+  const countdownTextStyle = {
+    flex: 1, // This will make sure that the container takes up all available space
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center', // Center content vertically
+    alignItems: 'center', // Center content horizontally
+    minHeight: '100vh', // Fallback to ensure it takes at least the height of the viewport
+    backgroundImage: `url('/background1.jpg')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  };
+
+
   const handleButtonClick = (changeImage, buttonId) => {
     setActiveButton(buttonId);
     changeImage();
@@ -86,13 +108,9 @@ export default function CombinedComponent() {
   return (
     <div>
       {/* Countdown Timer */}
-      <div className="countdown-text-container flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white"
-           style={{ 
-             backgroundImage: `url('/background1.jpg')`,
-             backgroundSize: 'cover',
-             backgroundPosition: 'center',
-             backgroundRepeat: 'no-repeat'
-           }}>
+       <div style={mainContainerStyle}>
+      {/* Countdown Timer with updated styles */}
+      <div className="countdown-text-container" style={countdownTextStyle}>
         <header className="text-center py-10">
           <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2">Countdown to Our Special Day</h1>
           <p className="text-xl sm:text-2xl text-gray-300">The day we've been waiting for is almost here!</p>
