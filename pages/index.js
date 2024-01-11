@@ -55,7 +55,7 @@ const countdownTextStyle = {
   flexDirection: 'column',
   justifyContent: 'center', // Center content vertically
   alignItems: 'center', // Center content horizontally
-  backgroundImage: `url('/background1.jpg')`,
+  backgroundImage: `url('/background.jpg')`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',

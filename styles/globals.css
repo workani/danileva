@@ -24,14 +24,26 @@ body {
 /* Mobile styles */
 @media only screen and (max-width: 600px) {
   .countdown-container {
-    padding-top: 130px; /* Adjust top padding for mobile devices */
+    padding-top: 68px; /* Adjust top padding for mobile devices */
   }
 
   .content-container {
-    padding: 20px; /* Add padding around content */
-    font-size: '100rem';
+    padding: 10px; /* Add padding around content */
+    
+  }
+  
+  .text-5xl {
+    font-size: 9vw; /* Responsive font size for main countdown numbers */
   }
 
+  .text-xl, .text-2xl {
+    font-size: 5vw; /* Responsive font size for labels like 'Days', 'Hours' */
+  }
+
+  .countdown-container div {
+    padding: 20px; /* Reduced padding */
+    font-size: 5vw; /* Larger, responsive font size for countdown */
+  }
  
   .image-transition {
     transition: opacity 0.5s ease-in-out;
