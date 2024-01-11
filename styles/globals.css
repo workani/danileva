@@ -30,29 +30,24 @@ body {
 /* CSS */
 @media only screen and (max-width: 600px) { /* 600px обычно используется как порог для мобильных устройств */
   .countdown-container {
-    padding-top: 210px; /* Добавляет отступ сверху для мобильных устройств */
-  }
-
+    padding-top: 130px; /* Добавляет отступ сверху для мобильных устройств */
   .content-container {
-
-   padding: 20px;
- 
-  }
-
-.countdown-text-container  {
-   padding-top: 0px;
-}
-
+  /* Add your styles here */
+  /* For example, if you want to add padding: */
+  padding: 20px;
 
   .image-transition {
     transition: opacity 0.5s ease-in-out;
-    opacity: 100; /* Start with an opacity of 0 */
+    opacity: 0; /* Start with an opacity of 0 */
   }
-
-
-
+  
+  .image-visible {
+    opacity: 1; /* Fully visible */
   }
-
+  
+}
+  }
+}
   
 /* Медиа-запрос для десктопов */
 @media (min-width: 1024px) {
