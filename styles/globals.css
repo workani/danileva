@@ -40,13 +40,13 @@ body {
   }
 
 .countdown-text-container  {
-   padding-top: 100px;
+   padding-top: 0px;
 }
 
 
   .image-transition {
     transition: opacity 0.5s ease-in-out;
-    opacity: 0; /* Start with an opacity of 0 */
+    opacity: 100; /* Start with an opacity of 0 */
   }
 
 
