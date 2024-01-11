@@ -162,12 +162,12 @@ const countdownTextStyle = {
 
        {/* Image Gallery */}
        <div className="block md:hidden image-gallery">
-        <div className="min-h-screen bg-black flex items-center justify-center p-4">
+        <div className="min-h-screen bg-black flex justify-center p-4">
           <div className="max-w-full mx-auto">
             <div className="mb-6">
               <img
                 alt={images[currentIndex].alt}
-                className={`w-full h-auto rounded-md bg-gray-900 image-transition ${imageLoaded ? "image-visible" : ""}`}
+                className={`w-full h-full rounded-md bg-gray-900 image-transition ${imageLoaded ? "image-visible" : ""}`}
                 src={images[currentIndex].src}
                 onLoad={() => setImageLoaded(true)}
                 style={{
@@ -196,7 +196,7 @@ const countdownTextStyle = {
             >
               <ChevronRightIcon className="h-10 w-10 text-gray-300" />
             </button>
-
+            
             </div>
           </div>
         </div>
@@ -207,7 +207,9 @@ const countdownTextStyle = {
         <img src={images[(currentIndex + 1) % images.length].src} alt="preload next" />
         <img src={images[(currentIndex === 0 ? images.length - 1 : currentIndex - 1)].src} alt="preload previous" />
       </div>
+
     </div>
+    
   );
 }
 
