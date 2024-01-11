@@ -34,29 +34,29 @@ export default function CombinedComponent() {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
 
-  const [activeButton, setActiveButton] = useState(null);
 
-    // Inline styles for main container
-  const mainContainerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh', // Ensure it takes at least the height of the viewport
-  };
+  // Modified main container style
+const mainContainerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: '100vh', // Keep the minimum height
+};
 
-  // Inline styles for countdown text container
-  const countdownTextStyle = {
-    flex: 1, // This will make sure that the container takes up all available space
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center', // Center content vertically
-    alignItems: 'center', // Center content horizontally
-    minHeight: '100vh', // Fallback to ensure it takes at least the height of the viewport
-    backgroundImage: `url('/background1.jpg')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  };
+// Modified countdown text container style
+const countdownTextStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center', // Center content vertically
+  alignItems: 'center', // Center content horizontally
+  backgroundImage: `url('/background1.jpg')`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  padding: '20px', // Add some padding (adjust as needed)
+  boxSizing: 'border-box', // Ensure padding is included in height calculation
+};
 
+// ... rest of your React component ...
 
   const handleButtonClick = (changeImage, buttonId) => {
     setActiveButton(buttonId);
