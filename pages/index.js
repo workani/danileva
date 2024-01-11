@@ -52,7 +52,7 @@ const countdownTextStyle = {
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
-  padding: '120px', // Add some padding (adjust as needed)
+  padding: '20px', // Add some padding (adjust as needed)
   boxSizing: 'border-box', // Ensure padding is included in height calculation
 };
 
