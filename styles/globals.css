@@ -18,42 +18,33 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
-
-/* CSS */
-@media only screen and (max-width: 600px) { /* 600px обычно используется как порог для мобильных устройств */
+/* Mobile styles */
+@media only screen and (max-width: 600px) {
   .countdown-container {
-    padding-top: 130px; /* Добавляет отступ сверху для мобильных устройств */
+    padding-top: 130px; /* Adjust top padding for mobile devices */
+  }
+
   .content-container {
-  /* Add your styles here */
-  /* For example, if you want to add padding: */
-  padding: 20px;
+    padding: 20px; /* Add padding around content */
+  }
 
   .image-transition {
     transition: opacity 0.5s ease-in-out;
     opacity: 0; /* Start with an opacity of 0 */
   }
-  
+
   .image-visible {
-    opacity: 1; /* Fully visible */
-  }
-  
-}
+    opacity: 1; /* Fade in to full visibility */
   }
 }
-  
-/* Медиа-запрос для десктопов */
+
+/* Desktop styles */
 @media (min-width: 1024px) {
   .countdown-container div {
-    /* Увеличиваем размеры элементов счетчика */
-    padding: 2rem;
-    font-size: 3rem; /* Увеличенный размер шрифта для десктопов */
+    padding: 2rem; /* Increase padding for larger screens */
+    font-size: 3rem; /* Larger font size for desktop */
   }
 }
