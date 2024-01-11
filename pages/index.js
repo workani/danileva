@@ -114,6 +114,10 @@ const countdownTextStyle = {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
 
+  // Function for smooth scrolling to the gallery
+  const scrollToGallery = () => {
+    document.querySelector('.image-gallery').scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Render Method
   return (
@@ -149,7 +153,7 @@ const countdownTextStyle = {
         <footer className="text-center py-10">
           <p className="text-xl sm:text-2xl text-gray-300">Can't wait to see you on 17th February!</p>
         
-          <button className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-full">
+          <button className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-full" onClick={scrollToGallery}>
             Check our gallery
             </button>
         </footer>
@@ -157,7 +161,7 @@ const countdownTextStyle = {
       </div>
 
        {/* Image Gallery */}
-       <div className="block md:hidden">
+       <div className="block md:hidden image-gallery">
         <div className="min-h-screen bg-black flex items-center justify-center p-4">
           <div className="max-w-full mx-auto">
             <div className="mb-6">
