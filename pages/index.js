@@ -33,30 +33,8 @@ export default function CombinedComponent() {
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
+
   const [activeButton, setActiveButton] = useState(null);
-
-  // Modified main container style
-const mainContainerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh', // Keep the minimum height
-};
-
-// Modified countdown text container style
-const countdownTextStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center', // Center content vertically
-  alignItems: 'center', // Center content horizontally
-  backgroundImage: `url('/background1.jpg')`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  padding: '20px', // Add some padding (adjust as needed)
-  boxSizing: 'border-box', // Ensure padding is included in height calculation
-};
-
-// ... rest of your React component ...
 
   const handleButtonClick = (changeImage, buttonId) => {
     setActiveButton(buttonId);
@@ -106,10 +84,15 @@ const countdownTextStyle = {
 
   // Render Method
   return (
-    <div style={mainContainerStyle}>
-      {/* Countdown Timer with updated styles */}
-      <div className="countdown-text-container" style={countdownTextStyle}>
-        {/* ... existing JSX ... */}
+    <div>
+      {/* Countdown Timer */}
+      <div className="countdown-text-container flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white"
+           style={{ 
+             backgroundImage: `url('/background1.jpg')`,
+             backgroundSize: 'cover',
+             backgroundPosition: 'center',
+             backgroundRepeat: 'no-repeat'
+           }}>
         <header className="text-center py-10">
           <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2">Countdown to Our Special Day</h1>
           <p className="text-xl sm:text-2xl text-gray-300">The day we've been waiting for is almost here!</p>
