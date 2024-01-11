@@ -200,6 +200,9 @@ const countdownTextStyle = {
             </div>
           </div>
         </div>
+        <div className="bg-black text-center py-4 text-xl">
+        <p>{`2024 Сделано для Евы с ❤\u{fe0f}`}</p>
+      </div>
       </div>
 
       {/* Hidden preload images */}
