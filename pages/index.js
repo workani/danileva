@@ -106,11 +106,10 @@ export default function CombinedComponent() {
 
   // Render Method
   return (
-    <div>
-      {/* Countdown Timer */}
-       <div style={mainContainerStyle}>
+    <div style={mainContainerStyle}>
       {/* Countdown Timer with updated styles */}
       <div className="countdown-text-container" style={countdownTextStyle}>
+        {/* ... existing JSX ... */}
         <header className="text-center py-10">
           <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2">Countdown to Our Special Day</h1>
           <p className="text-xl sm:text-2xl text-gray-300">The day we've been waiting for is almost here!</p>
