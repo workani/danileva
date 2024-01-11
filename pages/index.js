@@ -49,7 +49,6 @@ const mainContainerStyle = {
   minHeight: '100vh', // Keep the minimum height
 };
 
-const isDesktop = window.innerWidth >= 1024; // 1024px as the threshold for desktop
 
 const countdownTextStyle = {
   display: 'flex',
