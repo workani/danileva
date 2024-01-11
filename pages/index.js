@@ -33,7 +33,7 @@ export default function CombinedComponent() {
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-
+  const [activeButton, setActiveButton] = useState(null);
 
   // Modified main container style
 const mainContainerStyle = {
