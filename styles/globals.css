@@ -24,7 +24,7 @@ body {
 /* Mobile styles */
 @media only screen and (max-width: 600px) {
   .countdown-container {
-    padding-top: 130px; /* Adjust top padding for mobile devices */
+    padding-top: 0px; /* Adjust top padding for mobile devices */
   }
 
   .content-container {
