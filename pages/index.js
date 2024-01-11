@@ -7,7 +7,6 @@ export default function CombinedComponent() {
     const difference = +new Date(`${year}-02-17`) - +new Date();
     let timeLeft = {};
 
-    
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
