@@ -25,6 +25,7 @@ export default function CombinedComponent() {
     { src: '/image2.jpg', alt: 'Image 2' },
     { src: '/image3.jpg', alt: 'Image 3' },
     { src: '/image4.jpg', alt: 'Image 4' },
+    { src: '/image5.jpg', alt: 'Image 5' },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
