@@ -56,7 +56,7 @@ const countdownTextStyle = {
   flexDirection: 'column',
   justifyContent: 'center', 
   alignItems: 'center', 
-  backgroundImage: isDesktop ? 'none' : `url('/background.jpg')`,
+  backgroundImage:  `url('/background.jpg')`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
@@ -203,7 +203,7 @@ const countdownTextStyle = {
           </div>
         </div>
         <div className="bg-black text-center py-4 text-xl">
-        <p>{'Сделано для Евы с ❤\u{fe0f}'}</p>
+        <p>{'Made for Eva with❤\u{fe0f}'}</p>
       </div>
       </div>
 
