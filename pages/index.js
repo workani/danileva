@@ -49,22 +49,21 @@ const mainContainerStyle = {
   minHeight: '100vh', // Keep the minimum height
 };
 
-// Modified countdown text container style
+const isDesktop = window.innerWidth >= 1024; // 1024px as the threshold for desktop
+
 const countdownTextStyle = {
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center', // Center content vertically
-  alignItems: 'center', // Center content horizontally
-  backgroundImage: `url('/background.jpg')`,
+  justifyContent: 'center', 
+  alignItems: 'center', 
+  backgroundImage: isDesktop ? 'none' : `url('/background.jpg')`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
-  padding: '20px', // Add some padding (adjust as needed)
-  boxSizing: 'border-box', // Ensure padding is included in height calculation
-  '@media (min-width: 1024px)': { // Apply this style on screens wider than 1024px
-    backgroundImage: 'none',
-  },
+  padding: '20px',
+  boxSizing: 'border-box',
 };
+
 
 // ... rest of your React component ...
 
