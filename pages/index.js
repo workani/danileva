@@ -162,7 +162,7 @@ const countdownTextStyle = {
 
        {/* Image Gallery */}
        <div className="block md:hidden image-gallery">
-        <div className="min-h-screen bg-black flex justify-center p-4">
+        <div className="bg-black flex justify-center p-4">
           <div className="max-w-full mx-auto">
             <div className="mb-6">
               <img
