@@ -61,6 +61,9 @@ const countdownTextStyle = {
   backgroundRepeat: 'no-repeat',
   padding: '20px', // Add some padding (adjust as needed)
   boxSizing: 'border-box', // Ensure padding is included in height calculation
+  '@media (min-width: 1024px)': { // Apply this style on screens wider than 1024px
+    backgroundImage: 'none',
+  },
 };
 
 // ... rest of your React component ...
@@ -126,13 +129,13 @@ const countdownTextStyle = {
       <div className="countdown-text-container" style={countdownTextStyle}>
 
         <header className="text-center py-10">
-          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2">Countdown to Our Special Day</h1>
-          <p className="text-xl sm:text-2xl text-gray-300">The day we've been waiting for is almost here!</p>
+          <h1 className="text-3xl sm:text-5xl  font-bold text-white mb-2">Обратный отсчет до твоего возвращения:</h1>
+          <p className="text-xl sm:text-2xl font-bold text-gray-350">День который я жду больше всего!</p>
         </header>
         <main className="flex flex-col items-center justify-center space-y-5 sm:space-y-10">
             <div className="countdown-container grid grid-cols-2 sm:grid-cols-4 text-center gap-4">
               <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4">
-                <p className="text-5xl sm:text-7xl font-bold ">{timeLeft.days}</p>
+                <p className="text-5xl sm:text-7xl font-bold text-white mb-2 ">{timeLeft.days}</p>
                 <p className="text-xl sm:text-2xl text-gray-300">Days</p>
               </div>
               <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4">
@@ -151,10 +154,10 @@ const countdownTextStyle = {
 
         </main>
         <footer className="text-center py-10">
-          <p className="text-xl sm:text-2xl text-gray-300">Can't wait to see you on 17th February!</p>
+          <p className="text-xl sm:text-2xl font-bold text-gray-350">До встречи, 17-го февраля!</p>
         
-          <button className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-full" onClick={scrollToGallery}>
-            Check our gallery
+          <button className="mt-10 md:hidden text-2xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full" onClick={scrollToGallery}>
+            Наши фото :)
             </button>
         </footer>
         
@@ -201,7 +204,7 @@ const countdownTextStyle = {
           </div>
         </div>
         <div className="bg-black text-center py-4 text-xl">
-        <p>{`2024 Сделано для Евы с ❤\u{fe0f}`}</p>
+        <p>{'Сделано для Евы с ❤\u{fe0f}'}</p>
       </div>
       </div>
 
