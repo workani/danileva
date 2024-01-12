@@ -37,77 +37,73 @@ export default function CombinedComponent() {
 
   const [activeButton, setActiveButton] = useState(null);
 
-
   // State for the shuffled images
   const [images, setImages] = useState(shuffleArray(imageData));
-  
 
-// Custom Hook for Media Query
-const useMediaQuery = (query) => {
-  // Initialize matches without relying on window
-  const [matches, setMatches] = useState(false);
+  // Состояние для отслеживания времени последнего нажатия кнопки
+  const [lastButtonPress, setLastButtonPress] = useState(Date.now());
 
-  useEffect(() => {
-    // Ensure window is available (client-side)
-    if (typeof window !== 'undefined') {
-      const media = window.matchMedia(query);
-      if (media.matches !== matches) {
-        setMatches(media.matches);
+  // Custom Hook for Media Query
+  const useMediaQuery = (query) => {
+    // Initialize matches without relying on window
+    const [matches, setMatches] = useState(false);
+
+    useEffect(() => {
+      // Ensure window is available (client-side)
+      if (typeof window !== 'undefined') {
+        const media = window.matchMedia(query);
+        if (media.matches !== matches) {
+          setMatches(media.matches);
+        }
+
+        // Listener to update state on window resize
+        const listener = () => setMatches(media.matches);
+        window.addEventListener('resize', listener);
+
+        // Cleanup listener
+        return () => window.removeEventListener('resize', listener);
       }
+    }, [matches, query]);
 
-      // Listener to update state on window resize
-      const listener = () => setMatches(media.matches);
-      window.addEventListener('resize', listener);
-
-      // Cleanup listener
-      return () => window.removeEventListener('resize', listener);
-    }
-  }, [matches, query]);
-
-  return matches;
-};
-
+    return matches;
+  };
 
   // Modified main container style
-const mainContainerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh', // Keep the minimum height
-};
+  const mainContainerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh', // Keep the minimum height
+  };
 
+  // Use the custom hook for media query
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
 
+  // Modified countdownTextStyle with conditional backgroundImage
+  const countdownTextStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundImage: isDesktop ? 'none' : 'url("/background.jpg")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    padding: '20px',
+    boxSizing: 'border-box',
+  };
 
- // Use the custom hook for media query
- const isDesktop = useMediaQuery('(min-width: 1024px)');
-
- // Modified countdownTextStyle with conditional backgroundImage
- const countdownTextStyle = {
-   display: 'flex',
-   flexDirection: 'column',
-   justifyContent: 'center',
-   alignItems: 'center',
-   backgroundImage: isDesktop ? 'none' : 'url("/background.jpg")',
-   backgroundSize: 'cover',
-   backgroundPosition: 'center',
-   backgroundRepeat: 'no-repeat',
-   padding: '20px',
-   boxSizing: 'border-box',
- };
-
-
-// ... rest of your React component ...
-
+  // Измененная функция handleButtonClick для обновления времени последнего нажатия
   const handleButtonClick = (changeImage, buttonId) => {
     setActiveButton(buttonId);
     changeImage();
+    setLastButtonPress(Date.now()); // Обновляем время последнего нажатия
     setTimeout(() => {
       setActiveButton(null);
     }, 500); // Кнопка будет красной в течение 500 мс
   };
 
-
-   // useEffect for Countdown Timer
-   useEffect(() => {
+  // useEffect for Countdown Timer
+  useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -115,8 +111,8 @@ const mainContainerStyle = {
     return () => clearInterval(timer);
   }, []);
 
-   // useEffect to shuffle images on component mount
-   useEffect(() => {
+  // useEffect to shuffle images on component mount
+  useEffect(() => {
     setImages(shuffleArray(imageData));
   }, []);
 
@@ -133,6 +129,17 @@ const mainContainerStyle = {
     return () => clearInterval(interval);
   }, [autoSlide, images.length]);
 
+  // useEffect для автоматического перелистывания изображений, если кнопки не нажимались в течение 6 секунд
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (Date.now() - lastButtonPress > 6000) { // 6 секунд бездействия
+        setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
+        setImageLoaded(false); // Сброс состояния загруженного изображения для эффекта появления
+      }
+    }, 6000); // Проверка каждые 6 секунд
+
+    return () => clearInterval(interval);
+  }, [lastButtonPress, images.length]);
 
   const nextImage = () => {
     setAutoSlide(false);
