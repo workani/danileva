@@ -41,6 +41,9 @@ export default function CombinedComponent() {
   // State for the shuffled images
   const [images, setImages] = useState(shuffleArray(imageData));
 
+  // State for tracking shown images
+  const [shownImages, setShownImages] = useState(new Set());
+
   // Состояние для отслеживания времени последнего нажатия кнопки
   const [lastButtonPress, setLastButtonPress] = useState(Date.now());
 
@@ -117,25 +120,53 @@ export default function CombinedComponent() {
     setImages(shuffleArray(imageData));
   }, []);
 
-  // useEffect for Image Slider Auto-Slide
+  // Improved function for changing image
+  const changeImage = (direction) => {
+    setAutoSlide(false);
+    setImageLoaded(false);
+
+    setCurrentIndex(prevIndex => {
+      const newIndex = direction === 'next'
+        ? (prevIndex + 1) % images.length
+        : prevIndex === 0 ? images.length - 1 : prevIndex - 1;
+
+      // Add index to shown
+      setShownImages(prevShown => {
+        const newShown = new Set(prevShown);
+        newShown.add(newIndex);
+
+        // If all images have been shown, reshuffle and reset shown
+        if (newShown.size === images.length) {
+          setImages(shuffleArray(imageData));
+          newShown.clear();
+          setCurrentIndex(0); // Reset index to start from first image
+        }
+
+        return newShown;
+      });
+
+      return newIndex;
+    });
+  };
+
+
+  // Improved useEffect for auto-slide
   useEffect(() => {
     let interval;
     if (autoSlide) {
       interval = setInterval(() => {
-        setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
-        setImageLoaded(false); // Reset the image loaded state for fade-in effect
+        changeImage('next');
       }, 4000); // Change every 4 seconds
     }
 
     return () => clearInterval(interval);
-  }, [autoSlide, images.length]);
+  }, [autoSlide, images.length, shownImages]);
 
   // useEffect для автоматического перелистывания изображений, если кнопки не нажимались в течение 6 секунд
   useEffect(() => {
     const interval = setInterval(() => {
       if (Date.now() - lastButtonPress > 6000) { // 6 секунд бездействия
-        setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
-        setImageLoaded(false); // Сброс состояния загруженного изображения для эффекта появления
+        changeImage('next');
       }
     }, 6000); // Проверка каждые 6 секунд
 
@@ -143,15 +174,11 @@ export default function CombinedComponent() {
   }, [lastButtonPress, images.length]);
 
   const nextImage = () => {
-    setAutoSlide(false);
-    setImageLoaded(false);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    changeImage('next');
   };
 
   const prevImage = () => {
-    setAutoSlide(false);
-    setImageLoaded(false);
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    changeImage('prev');
   };
 
   // Function for smooth scrolling to the gallery
@@ -256,8 +283,6 @@ export default function CombinedComponent() {
   );
 }
 
-
-
 // Chevron Icons
 const ChevronLeftIcon = (props) => (
   <svg
@@ -293,12 +318,25 @@ const ChevronRightIcon = (props) => (
   </svg>
 );
 
-// Function to shuffle an array
+// Improved shuffle function
 function shuffleArray(array) {
-  let shuffledArray = [...array];
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  const shuffledArray = [...array];
+  const seenIndices = new Set();
+  let currentIndex = shuffledArray.length, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And if we haven't seen this index yet, swap it with the current element.
+    if (!seenIndices.has(randomIndex)) {
+      seenIndices.add(currentIndex);
+      [shuffledArray[currentIndex], shuffledArray[randomIndex]] = [
+        shuffledArray[randomIndex], shuffledArray[currentIndex]];
+    }
   }
+
   return shuffledArray;
 }
