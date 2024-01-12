@@ -40,6 +40,32 @@ export default function CombinedComponent() {
 
   // State for the shuffled images
   const [images, setImages] = useState(shuffleArray(imageData));
+  
+
+// Custom Hook for Media Query
+const useMediaQuery = (query) => {
+  // Initialize matches without relying on window
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    // Ensure window is available (client-side)
+    if (typeof window !== 'undefined') {
+      const media = window.matchMedia(query);
+      if (media.matches !== matches) {
+        setMatches(media.matches);
+      }
+
+      // Listener to update state on window resize
+      const listener = () => setMatches(media.matches);
+      window.addEventListener('resize', listener);
+
+      // Cleanup listener
+      return () => window.removeEventListener('resize', listener);
+    }
+  }, [matches, query]);
+
+  return matches;
+};
 
 
   // Modified main container style
@@ -50,18 +76,23 @@ const mainContainerStyle = {
 };
 
 
-const countdownTextStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center', 
-  alignItems: 'center', 
-  backgroundImage:  `url('/background.jpg')`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  padding: '20px',
-  boxSizing: 'border-box',
-};
+
+ // Use the custom hook for media query
+ const isDesktop = useMediaQuery('(min-width: 1024px)');
+
+ // Modified countdownTextStyle with conditional backgroundImage
+ const countdownTextStyle = {
+   display: 'flex',
+   flexDirection: 'column',
+   justifyContent: 'center',
+   alignItems: 'center',
+   backgroundImage: isDesktop ? 'none' : 'url("/background.jpg")',
+   backgroundSize: 'cover',
+   backgroundPosition: 'center',
+   backgroundRepeat: 'no-repeat',
+   padding: '20px',
+   boxSizing: 'border-box',
+ };
 
 
 // ... rest of your React component ...
@@ -122,7 +153,7 @@ const countdownTextStyle = {
 
   // Render Method
   return (
-    <div style={mainContainerStyle}>
+    <div  style={mainContainerStyle}>
       {/* Countdown Timer with updated styles */}
       <div className="countdown-text-container" style={countdownTextStyle}>
 
